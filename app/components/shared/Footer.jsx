@@ -8,7 +8,7 @@ const Footer = () => {
         {/* About */}
         <div>
           <h3 className="font-semibold text-lg mb-3 text-[#006943]">
-            sp ChinaBangla Mediaid Mediaid
+            sp ChinaBangla Mediaid
           </h3>
           <p className="text-sm leading-relaxed">
             Connecting Bangladesh to world-class medical care in China.  

@@ -5,6 +5,7 @@ import WhyChooseUs from './components/home/WhyChooseUs'
 import TestimonialsSection from './components/home/TestimonialsSection'
 import ContactSection from './components/home/ContactSection'
 import AppointmentSection from './components/home/AppointmentSection'
+import HospitalShowcase from './components/home/HospitalShowcase'
 
 export default function page() {
   return (
@@ -12,6 +13,7 @@ export default function page() {
       <Hero/>
       <ServicesSection/>
       <AppointmentSection/>
+      <HospitalShowcase/>
       <AboutSection/>
       <WhyChooseUs/>
       <TestimonialsSection/>
