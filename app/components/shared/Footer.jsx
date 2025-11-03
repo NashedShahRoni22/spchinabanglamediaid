@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
+import logo from "../../assets/logo.png";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -7,23 +9,42 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 md:grid-cols-3">
         {/* About */}
         <div>
-          <h3 className="font-semibold text-lg mb-3 text-[#006943]">
-            sp ChinaBangla Mediaid
-          </h3>
-          <p className="text-sm leading-relaxed">
-            Connecting Bangladesh to world-class medical care in China.  
-            We ensure trusted collaboration and complete health support.
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              alt="sp ChinaBangla Mediaid"
+              src={logo}
+              height={80}
+              width={280}
+            />
+          </Link>
+          <p className="text-sm leading-relaxed mt-6">
+            Connecting Bangladesh to world-class medical care in China. We
+            ensure trusted collaboration and complete health support.
           </p>
         </div>
 
         {/* Quick Links */}
         <div>
-          <h3 className="font-semibold text-lg mb-3 text-[#006943]">Quick Links</h3>
+          <h3 className="font-semibold text-lg mb-3 text-[#006943]">
+            Quick Links
+          </h3>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/services" className="hover:text-[#006943]">Services</Link></li>
-            <li><Link href="/appointment" className="hover:text-[#006943]">Appointment</Link></li>
-            <li><Link href="/about" className="hover:text-[#006943]">About</Link></li>
-            <li><Link href="/contact" className="hover:text-[#006943]">Contact</Link></li>
+            <li>
+              <Link href="/services" className="hover:text-[#006943]">
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className="hover:text-[#006943]">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-[#006943]">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -48,7 +69,8 @@ const Footer = () => {
       </div>
 
       <div className="text-center mt-8 text-sm text-gray-500">
-        © {new Date().getFullYear()} sp ChinaBangla Mediaid Mediaid. All rights reserved.
+        © {new Date().getFullYear()} sp ChinaBangla Mediaid Mediaid. All rights
+        reserved.
       </div>
     </footer>
   );

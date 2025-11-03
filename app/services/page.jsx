@@ -6,7 +6,7 @@ export default function page() {
   return (
     <div className="py-10">
       <ServicesSection />
-      <AppointmentSection />
+      {/* <AppointmentSection /> */}
       <TestimonialsSection />
     </div>
   );

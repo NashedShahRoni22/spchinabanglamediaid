@@ -129,13 +129,13 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10"
             >
-              <Link
+              {/* <Link
                 href="/appointment"
                 className="group inline-flex items-center justify-center gap-2 bg-[#006943] text-white font-semibold py-4 px-8 rounded-xl hover:bg-[#005236] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Book Appointment
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </Link> */}
               <Link
                 href="/services"
                 className="inline-flex items-center justify-center gap-2 border-2 border-[#006943] text-[#006943] font-semibold py-4 px-8 rounded-xl hover:bg-[#006943] hover:text-white transition-all duration-300"

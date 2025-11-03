@@ -12,12 +12,12 @@ export default function page() {
     <section>
       <Hero/>
       <ServicesSection/>
-      <AppointmentSection/>
+      {/* <AppointmentSection/> */}
       <HospitalShowcase/>
-      <AboutSection/>
+      {/* <AboutSection/> */}
       <WhyChooseUs/>
       <TestimonialsSection/>
-      <ContactSection/>
+      {/* <ContactSection/> */}
     </section>
   )
 }
