@@ -53,6 +53,17 @@ const Footer = () => {
           <h3 className="font-semibold text-lg mb-3 text-[#006943]">Contact</h3>
           <ul className="text-sm space-y-2">
             <li className="flex items-center gap-2">
+              <MessageCircle className="w-4 h-4 text-[#25D366]" />
+              <a
+                href="https://wa.me/8801976260695"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#25D366] hover:underline transition-colors"
+              >
+                01976-260695 (WhatsApp)
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-[#006943]" />
               <a
                 href="tel:01720385178"
@@ -68,17 +79,6 @@ const Footer = () => {
                 className="hover:text-[#006943] hover:underline transition-colors"
               >
                 01907-802910
-              </a>
-            </li>
-            <li className="flex items-center gap-2">
-              <MessageCircle className="w-4 h-4 text-[#25D366]" />
-              <a
-                href="https://wa.me/8801976260695"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#25D366] hover:underline transition-colors"
-              >
-                01976-260695 (WhatsApp)
               </a>
             </li>
             <li className="flex items-center gap-2">

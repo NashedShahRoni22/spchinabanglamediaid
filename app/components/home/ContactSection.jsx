@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Send, Clock, MessageSquare } from "lucide-react";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -27,28 +28,36 @@ export default function ContactSection() {
     setSubmitStatus("");
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/nashedshah@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          _subject: "New Contact Form Submission",
-        }),
-      });
+      // EmailJS configuration
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-      if (response.ok) {
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || "Not provided",
+        message: formData.message,
+        to_email: "info@spchinabanglamediaid.com",
+      };
+
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      if (response.status === 200) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
         setSubmitStatus("error");
       }
     } catch (error) {
+      console.error("EmailJS Error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -74,7 +83,8 @@ export default function ContactSection() {
             Get In <span className="text-[var(--color-primary)]">Touch</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Have questions about our services? We're here to help you every step of the way.
+            Have questions about our services? We're here to help you every step
+            of the way.
           </p>
         </motion.div>
 
@@ -95,9 +105,12 @@ export default function ContactSection() {
                   <MapPin className="w-6 h-6 text-[var(--color-primary)]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Our Location</h3>
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    Our Location
+                  </h3>
                   <p className="text-gray-600">
-                    H-165, R-1, Baridhara DOHS<br />
+                    H-165, R-1, Baridhara DOHS
+                    <br />
                     Dhaka, Bangladesh
                   </p>
                 </div>
@@ -109,12 +122,14 @@ export default function ContactSection() {
                   <Phone className="w-6 h-6 text-[var(--color-primary)]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Phone Number</h3>
-                  <a 
-                    href="tel:+8801731106046" 
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    Phone Number
+                  </h3>
+                  <a
+                    href="tel:+8801976260695"
                     className="text-gray-600 hover:text-[var(--color-primary)] transition-colors"
                   >
-                    +880 1731-106046
+                    +880 1976-260695
                   </a>
                 </div>
               </div>
@@ -125,12 +140,14 @@ export default function ContactSection() {
                   <Mail className="w-6 h-6 text-[var(--color-primary)]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Email Address</h3>
-                  <a 
-                    href="mailto:nashedshah@gmail.com" 
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    Email Address
+                  </h3>
+                  <a
+                    href="mailto:info@spchinabanglamediaid.com"
                     className="text-gray-600 hover:text-[var(--color-primary)] transition-colors"
                   >
-                    nashedshah@gmail.com
+                    info@spchinabanglamediaid.com
                   </a>
                 </div>
               </div>
@@ -141,9 +158,12 @@ export default function ContactSection() {
                   <Clock className="w-6 h-6 text-[var(--color-primary)]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Office Hours</h3>
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    Office Hours
+                  </h3>
                   <p className="text-gray-600">
-                    Saturday - Thursday: 9:00 AM - 6:00 PM<br />
+                    Saturday - Thursday: 9:00 AM - 6:00 PM
+                    <br />
                     Friday: Closed
                   </p>
                 </div>
@@ -183,12 +203,17 @@ export default function ContactSection() {
                 <div className="w-10 h-10 bg-[var(--color-primary)]/10 rounded-xl flex items-center justify-center">
                   <MessageSquare className="w-5 h-5 text-[var(--color-primary)]" />
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900">Send Us a Message</h3>
+                <h3 className="text-2xl font-semibold text-gray-900">
+                  Send Us a Message
+                </h3>
               </div>
 
-              <div className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Full Name *
                   </label>
                   <input
@@ -204,7 +229,10 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Email Address *
                   </label>
                   <input
@@ -220,7 +248,10 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Phone Number
                   </label>
                   <input
@@ -235,7 +266,10 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Your Message *
                   </label>
                   <textarea
@@ -252,19 +286,20 @@ export default function ContactSection() {
 
                 {submitStatus === "success" && (
                   <div className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm">
-                    ✓ Thank you! Your message has been sent successfully. We'll get back to you soon.
+                    ✓ Thank you! Your message has been sent successfully. We'll
+                    get back to you soon.
                   </div>
                 )}
 
                 {submitStatus === "error" && (
                   <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
-                    ✗ Something went wrong. Please try again or contact us directly.
+                    ✗ Something went wrong. Please try again or contact us
+                    directly.
                   </div>
                 )}
 
                 <button
-                  type="button"
-                  onClick={handleSubmit}
+                  type="submit"
                   disabled={isSubmitting}
                   className="w-full bg-[var(--color-primary)] text-white py-3 px-6 rounded-xl font-medium hover:bg-[var(--color-primary)]/90 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                 >
@@ -280,7 +315,7 @@ export default function ContactSection() {
                     </>
                   )}
                 </button>
-              </div>
+              </form>
             </div>
           </motion.div>
         </div>

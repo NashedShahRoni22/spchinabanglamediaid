@@ -364,11 +364,11 @@ export default function HospitalShowcase() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+8801731106046"
+                href="tel:+8801976260695"
                 className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-semibold py-4 px-8 rounded-xl hover:bg-white/10 transition-all"
               >
                 <Phone className="w-5 h-5" />
-                Call Us: +880 1731-106046
+                Call Us: +880 1976-260695
               </a>
             </div>
           </div>
