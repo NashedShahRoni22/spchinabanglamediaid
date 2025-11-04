@@ -1,5 +1,6 @@
 import Navbar from "./components/shared/Navbar";
 import Footer from "./components/shared/Footer";
+import WhatsAppFloat from "./components/shared/WhatsAppFloat";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );
