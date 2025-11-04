@@ -39,7 +39,7 @@ export default function ContactSection() {
         from_email: formData.email,
         phone: formData.phone || "Not provided",
         message: formData.message,
-        to_email: "info@spchinabanglamediaid.com",
+        to_email: "parvinsultana912@gmail.com",
       };
 
       // Send email using EmailJS

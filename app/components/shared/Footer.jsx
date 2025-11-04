@@ -87,14 +87,14 @@ const Footer = () => {
             </li>
             <li className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-[#006943]" />
-              H-165, R-1, Baridhara DOHS, Dhaka
+              H-165, R-1, Baridhara DOHS, Dhaka.
             </li>
           </ul>
         </div>
       </div>
 
       <div className="text-center mt-8 text-sm text-gray-500">
-        © {new Date().getFullYear()} sp ChinaBangla Mediaid Mediaid. All rights
+        © {new Date().getFullYear()} sp ChinaBangla Mediaid. All rights
         reserved.
       </div>
     </footer>
