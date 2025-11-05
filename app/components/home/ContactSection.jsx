@@ -27,22 +27,26 @@ export default function ContactSection() {
     setIsSubmitting(true);
     setSubmitStatus("");
 
-    try {
-      // EmailJS configuration
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    // Phone validation
+    const isValidBDPhone = /^01[3-9]\d{8}$/.test(formData.phone);
+    if (!isValidBDPhone) {
+      setSubmitStatus("invalidPhone");
+      setIsSubmitting(false);
+      return;
+    }
 
-      // Prepare template parameters
+    try {
+      const serviceId = "service_bhed118";
+      const templateId = "template_fhy4fhp";
+      const publicKey = "YHY1TeWVBGN2iW0Oh";
+
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        phone: formData.phone || "Not provided",
+        phone: formData.phone,
         message: formData.message,
-        to_email: "parvinsultana912@gmail.com",
       };
 
-      // Send email using EmailJS
       const response = await emailjs.send(
         serviceId,
         templateId,
@@ -252,18 +256,26 @@ export default function ContactSection() {
                     htmlFor="phone"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Phone Number
+                    Phone Number *
                   </label>
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
+                    required
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all bg-white"
-                    placeholder="+880 1234-567890"
+                    placeholder="017xxxxxxxx"
                   />
                 </div>
+
+                {submitStatus === "invalidPhone" && (
+                  <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-xl text-yellow-700 text-sm">
+                    ⚠ Please enter a valid Bangladeshi phone number (e.g.,
+                    01712345678).
+                  </div>
+                )}
 
                 <div>
                   <label
